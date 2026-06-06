@@ -97,7 +97,7 @@ fi
 
 
 # --- 3. VIM KONFIGURATION & PLUGINS ---
-echo "🛠️ Konfiguriere Vim (Native Packages)..."
+echo "🛠️ Konfiguriere Vim ..."
 
 create_symlink "$DOTFILES_DIR/vimrc" "$HOME/.vim/vimrc"
 echo "✅ vimrc kopiert, lade vim-plug herunter..."
@@ -110,6 +110,11 @@ else
     echo "❌ vim-plug konnte nicht heruntergeladen werden." >&2
 fi
 
+# --- 3.5 NEOVIM KONFIGURATION & PLUGINS ---
+echo "🛠️ Konfiguriere NeoVim ..."
+
+create_symlink "$DOTFILES_DIR/init.lua" "$HOME/.config/nvim/init.lua"
+echo "✅ NeoVim konfigurier"
 
 # --- 4. VSCODIUM KONFIGURATION & EXTENSIONS ---
 echo "🛠️ Konfiguriere VSCodium..."
