@@ -1,0 +1,22 @@
+export EDITOR="vim"
+export LESS="-i"
+
+alias qtcreator=$HOME/Qt/Tools/QtCreator/bin/qtcreator
+alias docker=podman
+alias g='git'
+alias gs='git status'
+alias gitshow='git show --pretty=format:"%H" --no-patch'
+alias l='ls -lAh --color=auto'
+alias ll='ls -lAh --color=auto'
+alias rgrep='grep -inr --exclude-dir=".git"'
+alias format-all-clang='find src -type f \( -name "*.cpp" -o -name "*.h" \) -exec clang-format -i {} \;'
+
+dir_size() {
+    find . -name '*' -type f -printf '%b.%f\0' | awk -F . -v RS='\0' '{if (NF==2) $(NF+1)=" "; s[$NF] += $1; n[$NF]++} END {for (e in s) printf "%15d %6d  %s\n", s[e]*512, n[e], e}' | sort -rn | numfmt --to=iec-i --suffix=B
+}
+
+simple-find() {
+    find -iname *$1*
+}
+alias ff='simple-find'
+

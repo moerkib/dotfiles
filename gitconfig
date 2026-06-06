@@ -1,0 +1,55 @@
+[include]
+    path = ~/.gitconfig.local
+[push]
+	default = simple
+	autoSetupRemote = true
+[pull]
+	default = current
+	rebase = false
+[color]
+  ui = auto
+  branch = auto
+  diff = auto
+  status = auto
+[merge]
+  tool = meld
+[mergetool "meld"]
+  cmd = meld $LOCAL $MERGED $REMOTE
+[gc]
+	auto = 0
+[alias]
+    a = add
+    m = merge
+    b = branch
+    s = status
+    p = pull
+    d = diff
+    l = log
+    f = fetch
+    fa = fetch --all
+    c = commit
+    cm = commit -m
+    ca = commit -a
+    cam = commit -am
+    pu = push
+    co = checkout
+    sm = submodule
+    smu = submodule update --init
+    cp = cherry-pick
+    rmb = "!f() { git branch --merged | grep -v "main" | while read i; do git branch -d $i; done; }; f"
+[core]
+	autocrlf = input
+	pager = less -FRSX
+[mergetool]
+	keepBackup = false
+[fetch]
+	prune = true
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[safe]
+	directory = /tmp/gonnect
