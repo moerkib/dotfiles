@@ -111,10 +111,10 @@ else
 fi
 
 # --- 3.5 NEOVIM KONFIGURATION & PLUGINS ---
-echo "🛠️ Konfiguriere NeoVim ..."
+# echo "🛠️ Konfiguriere NeoVim ..."
 
-create_symlink "$DOTFILES_DIR/init.lua" "$HOME/.config/nvim/init.lua"
-echo "✅ NeoVim konfigurier"
+# create_symlink "$DOTFILES_DIR/init.lua" "$HOME/.config/nvim/init.lua"
+# echo "✅ NeoVim konfiguriert"
 
 # --- 4. VSCODIUM KONFIGURATION & EXTENSIONS ---
 echo "🛠️ Konfiguriere VSCodium..."

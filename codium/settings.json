@@ -24,5 +24,16 @@
     // --- AUTOMATISCH SPEICHERN & FORMATIEREN BEI TAB-WECHSEL ---
     "files.autoSave": "onFocusChange",
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "file"
+    "editor.formatOnSaveMode": "file",
+    "yaml.schemas": {
+        "file:///home/markus/.vscode-oss/extensions/continue.continue-1.2.22-linux-x64/config-yaml-schema.json": [
+            ".continue/**/*.yaml"
+        ]
+    },
+    "workbench.colorTheme": "acme",
+    "editor.minimap.enabled": false,
+    "go.testFlags": [
+        "-v"
+    ],
+    "git.enableSmartCommit": true
 }

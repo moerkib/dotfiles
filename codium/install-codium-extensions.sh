@@ -5,6 +5,7 @@ EXTENSIONS=(
     "EditorConfig.EditorConfig"
     "mrmlnc.vscode-duplicate"
     "golang.Go"
+    "foolusion.acme-theme"
 )
 
 echo "Starte Installation der VSCodium-Erweiterungen..."

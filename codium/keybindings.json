@@ -1,19 +1,35 @@
 [
-    // Zeilenkommentar umschalten mit Alt + Y
     {
         "key": "alt+y",
         "command": "editor.action.commentLine",
         "when": "editorTextFocus && !editorReadonly"
     },
-    // Standard-Shortcut für "Zeile löschen" (Strg+Shift+K) auf Strg + Y umbiegen
     {
         "key": "ctrl+y",
         "command": "editor.action.deleteLines",
         "when": "editorTextFocus && !editorReadonly"
     },
-    // Verhindert, dass Strg + Y weiterhin das standardmäßige "Redo" (Wiederholen) ausführt
     {
         "key": "ctrl+y",
         "command": "-redo"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+t",
+        "command": "testing.reRunLastRun"
+    },
+    {
+        "key": "alt+t",
+        "command": "-workbench.action.chat.focusQuestionCarouselTerminal",
+        "when": "chatHasQuestionCarousel && chatQuestionCarouselHasTerminal && inChat && inChatQuestionCarousel"
+    },
+    {
+        "key": "alt+t",
+        "command": "-workbench.action.chat.toggleThinkingContentAccessibleView",
+        "when": "accessibleViewIsShown && chatIsEnabled && accessibleViewCurrentProviderId == 'panelChat'"
     }
 ]
