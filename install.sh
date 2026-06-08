@@ -110,11 +110,25 @@ else
     echo "❌ vim-plug konnte nicht heruntergeladen werden." >&2
 fi
 
-# --- 3.5 NEOVIM KONFIGURATION & PLUGINS ---
-# echo "🛠️ Konfiguriere NeoVim ..."
+# --- 3.5 NEOVIM/LAZYVIM KONFIGURATION & PLUGINS ---
+echo "🛠️ Konfiguriere NeoVim ..."
+
+mv ~/.config/nvim{,.bak}
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
+
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+
+mkdir -p ~/.config/nvim/lua/config
+rm -f ~/.config/nvim/lua/config/keymaps.lua
+create_symlink "$DOTFILES_DIR/lazyvim/keymaps.lua" "$HOME/.config/nvim/lua/config/keymaps.lua"
 
 # create_symlink "$DOTFILES_DIR/init.lua" "$HOME/.config/nvim/init.lua"
-# echo "✅ NeoVim konfiguriert"
+
+echo "✅ NeoVim konfiguriert"
+
 
 # --- 4. VSCODIUM KONFIGURATION & EXTENSIONS ---
 echo "🛠️ Konfiguriere VSCodium..."
