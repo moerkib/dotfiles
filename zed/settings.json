@@ -1,0 +1,12 @@
+{
+  "autosave": "on_focus_change",
+  "base_keymap": "VSCode",
+  "disable_ai": true,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+}

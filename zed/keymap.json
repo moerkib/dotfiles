@@ -1,0 +1,18 @@
+[
+  {
+    "bindings": {
+      "alt-y": "editor::ToggleComments",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-y": "editor::DeleteLine",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-y": "editor::Redo",
+    },
+  },
+]

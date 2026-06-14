@@ -1,19 +1,17 @@
 #!/bin/bash
 
-# Array mit allen gewünschten VSCodium-Erweiterungen
+# all extension ids
 EXTENSIONS=(
     "EditorConfig.EditorConfig"
     "mrmlnc.vscode-duplicate"
-    "golang.Go"
-    "foolusion.acme-theme"
 )
 
-echo "Starte Installation der VSCodium-Erweiterungen..."
+echo "Starting Codium extension installations"
 
-# Schleife installiert jede Erweiterung einzeln
+# install extension one by one
 for ext in "${EXTENSIONS[@]}"; do
-    echo "Installiere: $ext"
+    echo "Installing: $ext"
     codium --install-extension "$ext"
 done
 
-echo "Alle Erweiterungen erfolgreich installiert!"
+echo "All extensions successfully installed."

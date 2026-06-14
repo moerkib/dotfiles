@@ -1,0 +1,16 @@
+# check for 'zed' as command and alias to flatpak if not
+
+if ! command -v flatpak >/dev/null 2>&1; then
+  return 0  # kein flatpak -> nichts tun
+fi
+
+FLATPAK_ID="dev.zed.Zed"
+
+# check if zed flatpak installed
+if flatpak list --app --columns=application 2>/dev/null | grep -Fxq "$FLATPAK_ID"; then
+
+  # alias
+  if ! alias zed >/dev/null 2>&1; then
+    alias zed='flatpak run dev.zed.Zed'
+  fi
+fi

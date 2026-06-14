@@ -1,0 +1,75 @@
+#!/bin/bash
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE}")" && pwd)"
+BACKUP_DIR="$HOME/Downloads/dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
+
+# safe symlinks with backup
+create_symlink() {
+  local source_file="$1"
+  local target_file="$2"
+
+  if [ -e "$target_file" ] || [ -L "$target_file" ]; then
+    if [ "$(readlink "$target_file")" == "$source_file" ]; then
+      return  // already linked correctly
+    fi
+    mkdir -p "$BACKUP_DIR"
+    mv "$target_file" "$BACKUP_DIR/"
+    echo "Backup created: $target_file -> $BACKUP_DIR/"
+  fi
+
+  # create folders in path, if neccessary
+  mkdir -p "$(dirname "$target_file")"
+  ln -s "$source_file" "$target_file"
+  echo "Linked: $target_file"
+}
+
+
+# generate local git config
+LOCAL_GIT="$HOME/.gitconfig.local"
+if [ ! -f "$LOCAL_GIT" ]; then
+  echo "Found no Git identity (~/.gitconfig.local)"
+  read -p "Complete name for Git: " git_name
+  read -p "Mail address for Git: " git_email
+
+  cat <<EOF >"$LOCAL_GIT"
+[user]
+    name = $git_name
+    email = $git_email
+EOF
+  echo "~/.gitconfig.local created."
+fi
+
+
+# sym links for config files
+
+create_symlink "$DOTFILES_DIR/gitconfig" "$HOME/.gitconfig"
+create_symlink "$DOTFILES_DIR/clang-format" "$HOME/.clang-format"
+
+# Vim
+create symlink "$DOTFILES_DIR/vimrc" "$HOME/.vim/vimrc"
+
+# NeoVim
+create_symlink "$DOTFILES_DIR/init.lua" "$HOME/.config/nvim/init.lua"
+
+# Codium
+create_symlink "$DOTFILES_DIR/codium/settings.json" "$HOME/.config/VSCodium/User/settings.json"
+create_symlink "$DOTFILES_DIR/codium/keybindings.json" "$HOME/.config/VSCodium/User/keybindings.json"
+
+# Zed - might require path changed if not installed as flatpak
+create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.var/app/dev.zed.Zed/config/zed/keymap.json"
+create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.var/app/dev.zed.Zed/config/zed/settings.json"
+
+
+# symlinks for bash rc files
+echo "🛠️ Konfiguriere Bash (.bashrc.d)..."
+
+mkdir -p "$HOME/.bashrc.d"
+
+if [ -d "$DOTFILES_DIR/bash" ]; then
+  for file_path in "$DOTFILES_DIR/bash"/*; do
+    if [ -f "$file_path" ]; then
+      filename=$(basename "$file_path")
+      create_symlink "$file_path" "$HOME/.bashrc.d/$filename"
+    fi
+  done
+fi

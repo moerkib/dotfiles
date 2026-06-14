@@ -1,13 +1,10 @@
-# Prüfen, ob 'codium' bereits direkt als Befehl verfügbar ist
+# check whether 'codium' is known already
 if ! command -v codium &> /dev/null; then
-    
-    # Wenn nicht, prüfen, ob es als Flatpak installiert ist
-    # VSCodium nutzt im Flatpak-Universum die ID 'com.vscodium.codium'
+
+    # check for flatpak
     if command -v flatpak &> /dev/null && flatpak list &> /dev/null --columns=application | grep -q "com.vscodium.codium"; then
-        
-        # Alias einrichten, damit sich das Flatpak wie die native CLI verhält
+
+        # alias
         alias codium="flatpak run com.vscodium.codium"
-        
     fi
 fi
-
