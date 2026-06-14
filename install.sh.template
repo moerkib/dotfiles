@@ -52,12 +52,14 @@ create symlink "$DOTFILES_DIR/vimrc" "$HOME/.vim/vimrc"
 create_symlink "$DOTFILES_DIR/init.lua" "$HOME/.config/nvim/init.lua"
 
 # Codium
-create_symlink "$DOTFILES_DIR/codium/settings.json" "$HOME/.config/VSCodium/User/settings.json"
-create_symlink "$DOTFILES_DIR/codium/keybindings.json" "$HOME/.config/VSCodium/User/keybindings.json"
+mkdir -p "$HOME/.config/VSCodium/User"
+cp "$DOTFILES_DIR/codium/settings.json" "$HOME/.config/VSCodium/User/settings.json"
+cp "$DOTFILES_DIR/codium/keybindings.json" "$HOME/.config/VSCodium/User/keybindings.json"
 
 # Zed - might require path changed if not installed as flatpak
-create_symlink "$DOTFILES_DIR/zed/settings.json" "$HOME/.var/app/dev.zed.Zed/config/zed/keymap.json"
-create_symlink "$DOTFILES_DIR/zed/keymap.json" "$HOME/.var/app/dev.zed.Zed/config/zed/settings.json"
+mkdir -p "$HOME/.var/app/dev.zed.Zed/config/zed"
+cp "$DOTFILES_DIR/zed/settings.json" "$HOME/.var/app/dev.zed.Zed/config/zed/keymap.json"
+cp "$DOTFILES_DIR/zed/keymap.json" "$HOME/.var/app/dev.zed.Zed/config/zed/settings.json"
 
 
 # symlinks for bash rc files
