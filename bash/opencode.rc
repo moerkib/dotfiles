@@ -1,0 +1,15 @@
+opencode-box() {
+    local CONFIG_DIR="$HOME/.config/opencode"
+
+    if [ ! -d "$CONFIG_DIR" ]; then
+        mkdir -p "$CONFIG_DIR"
+    fi
+
+    podman run --rm -it \
+        --name opencode-box-instance \
+        -v "$(pwd):/workspace:Z" \
+        -v "$CONFIG_DIR:/root/.config/opencode:Z" \
+        -w /workspace \
+        ghcr.io/anomalyco/opencode
+}
+
